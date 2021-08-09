@@ -1,11 +1,29 @@
 from rest_framework import viewsets
-from modelform import models
+
 from modelform import serializers
+from modelform.models import StudentRecord
+from django.db.models import Count
+
 
 class StudentRecordViewset(viewsets.ModelViewSet):
-    queryset = models.StudentRecord.objects.all()
+    queryset = StudentRecord.objects.all()
     serializer_class = serializers.StudentRecordSerializer
     lookup_field = 'name'
     lookup_url_kwarg = 'name'
-    filterset_fields = ('name', )
-    extra_kwargs = {'url': {'lookup_field':'name'}}
+    filterset_fields = ('name',)
+    extra_kwargs = {'url': {'lookup_field': 'name'}}
+
+    def get_queryset(self):
+        # data = self.filter_queryset(StudentRecord.objects
+        #                             .filter(id=2)
+        #                             .values_list('id', 'name'))
+        data = self.filter_queryset(StudentRecord.objects.values_list('name', 'enrollment', 'classname__name', 'classname__collegename__name'))
+        # data = self.filter_queryset(StudentRecord.objects.all())
+        print(data)
+        # for i in data:
+        #     print(i)
+        # data = self.filter_queryset(StudentRecord.objects.annotate(Count('enrollment')))
+        # for i in data:
+        #     print(i.enrollment__count)
+
+        return data
