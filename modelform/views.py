@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from modelform.forms import StudentRecordForm
+from modelform.models import StudentRecord
 
 # Create your views here.
 def modelform(request):
