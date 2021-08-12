@@ -4,6 +4,8 @@ from modelform import serializers
 from modelform.models import StudentRecord
 from django.db.models import Count
 
+# q.prefetch_related('x___y___set').filter(x__y__isnull=False)
+
 
 class StudentRecordViewset(viewsets.ModelViewSet):
     queryset = StudentRecord.objects.all()
