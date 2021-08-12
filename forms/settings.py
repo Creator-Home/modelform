@@ -88,9 +88,9 @@ WSGI_APPLICATION = 'forms.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dacp2ki18t0e9',
-        'USER': 'wakthvomwlrsvb',
-        'PASSWORD': 'f5fd59d7af8b304be73ecc69e3ffeb56d4066a98a81ab0f242320a303640072a',
+        'NAME': 'd8gfalkih0sbqe',
+        'USER': 'culsevtpvamzwg',
+        'PASSWORD': 'c706eb8d735405905ad7fa4a5363128ab35f09626257aca6af2d381116d33b2e',
         'Port': '5432',
        }
     }
