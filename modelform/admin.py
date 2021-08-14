@@ -14,7 +14,7 @@ admin.site.register(StudentRecord, StudentRecordAdmin)
 
 
 class ClassRecordAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'register_date')
+    list_display = ('id', 'name', 'collegename', 'register_date')
     search_fields = ('name', 'register_date')
 
 

@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
 from modelform import serializers
-from modelform.models import StudentRecord
+from modelform.models import StudentRecord, CollegeRecord
 from django.db.models import Count
 
 # q.prefetch_related('x___y___set').filter(x__y__isnull=False)
@@ -20,8 +20,15 @@ class StudentRecordViewset(viewsets.ModelViewSet):
         #                             .filter(id=2)
         #                             .values_list('id', 'name'))
         data = self.filter_queryset(StudentRecord.objects.values_list('name', 'enrollment', 'classname__name', 'classname__collegename__name'))
+        # print(CollegeRecord.objects.all().prefetch_related('collegename__classname__set').filter(collegename__classname__isnull=False))
+        print(CollegeRecord.objects.prefetch_related('collegename').filter(collegename__isnull=True))
+        print(CollegeRecord.objects.prefetch_related('collegename').filter(collegename__name__isnull=False).values_list('collegename__name'))
+
+
+        print(CollegeRecord.objects.prefetch_related('collegename__classname').filter(collegename__classname__isnull=False, collegename__classname__name='bcjbd'))
+        print(CollegeRecord.objects.prefetch_related('collegename__classname').values_list('collegename__classname__name'))
         # data = self.filter_queryset(StudentRecord.objects.all())
-        print(data)
+        # print(data)
         # for i in data:
         #     print(i)
         # data = self.filter_queryset(StudentRecord.objects.annotate(Count('enrollment')))

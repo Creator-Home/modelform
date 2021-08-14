@@ -78,25 +78,25 @@ WSGI_APPLICATION = 'forms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd8gfalkih0sbqe',
-        'USER': 'culsevtpvamzwg',
-        'PASSWORD': 'c706eb8d735405905ad7fa4a5363128ab35f09626257aca6af2d381116d33b2e',
-        'Port': '5432',
-       }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
 
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'd8gfalkih0sbqe',
+#         'USER': 'culsevtpvamzwg',
+#         'PASSWORD': 'c706eb8d735405905ad7fa4a5363128ab35f09626257aca6af2d381116d33b2e',
+#         'Port': '5432',
+#        }
+#     }
+#
+# DATABASES = {}
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 
 REST_FRAMEWORK = {
@@ -164,5 +164,5 @@ MEDIA_URL = '/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Activate Django-Heroku.
-django_heroku.settings(locals())
-del DATABASES['default']['OPTIONS']['sslmode']
+# django_heroku.settings(locals())
+# del DATABASES['default']['OPTIONS']['sslmode']
