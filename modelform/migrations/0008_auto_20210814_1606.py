@@ -11,18 +11,18 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterModelOptions(
-            name='classrecord',
-            options={},
-        ),
-        migrations.AlterModelOptions(
-            name='collegerecord',
-            options={},
-        ),
-        migrations.AlterModelOptions(
-            name='studentrecord',
-            options={},
-        ),
+       # migrations.AlterModelOptions(
+       #     name='classrecord',
+       #     options={},
+       # ),
+       # migrations.AlterModelOptions(
+       #     name='collegerecord',
+       #     options={},
+       # ),
+       # migrations.AlterModelOptions(
+       #     name='studentrecord',
+       #     options={},
+       # ),
         migrations.AlterField(
             model_name='classrecord',
             name='collegename',
@@ -33,16 +33,16 @@ class Migration(migrations.Migration):
             name='classname',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='classname', to='modelform.classrecord'),
         ),
-        migrations.AlterModelTable(
-            name='classrecord',
-            table=None,
-        ),
-        migrations.AlterModelTable(
-            name='collegerecord',
-            table=None,
-        ),
-        migrations.AlterModelTable(
-            name='studentrecord',
-            table=None,
-        ),
+        #migrations.AlterModelTable(
+        #    name='classrecord',
+        #    table=None,
+        #),
+        #migrations.AlterModelTable(
+        #    name='collegerecord',
+        #    table=None,
+        #),
+        #migrations.AlterModelTable(
+        #    name='studentrecord',
+        #    table=None,
+        #),
     ]

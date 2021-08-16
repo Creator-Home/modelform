@@ -16,10 +16,11 @@ class StudentRecordViewset(viewsets.ModelViewSet):
     extra_kwargs = {'url': {'lookup_field': 'name'}}
 
     def get_queryset(self):
-        # data = self.filter_queryset(StudentRecord.objects
-        #                             .filter(id=2)
-        #                             .values_list('id', 'name'))
-        data = self.filter_queryset(StudentRecord.objects.values_list('name', 'enrollment', 'classname__name', 'classname__collegename__name'))
+        # data = self.queryset(StudentRecord.objects.values_list('name', 'enrollment', 'classname__name', 'classname__collegename__name'))
+        print(self.request.user)
+        data = self.filter_queryset(StudentRecord.objects
+                                     .filter(user=self.request.user))
+        # data = self.filter_queryset(StudentRecord.objects.values_list('name', 'enrollment', 'classname__name', 'classname__collegename__name'))
         # print(CollegeRecord.objects.all().prefetch_related('collegename__classname__set').filter(collegename__classname__isnull=False))
         print(CollegeRecord.objects.prefetch_related('collegename').filter(collegename__isnull=True))
         print(CollegeRecord.objects.prefetch_related('collegename').filter(collegename__name__isnull=False).values_list('collegename__name'))
