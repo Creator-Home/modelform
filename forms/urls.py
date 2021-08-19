@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('modelform.urls')),
     path('api/v1/', include(apis.router.urls)),
+    path('rest-auth/', include('rest_auth.urls')),
 ]
