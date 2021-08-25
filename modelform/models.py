@@ -10,7 +10,7 @@ class CollegeRecord(models.Model):
     register_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     class Meta:
     #     db_table = 'collegerecord'

@@ -28,12 +28,13 @@ SECRET_KEY = 'django-insecure-m_-w6@d)6tla$$zy_0#)gy1n3zvpne6ca5$)ivhimtr2+7@0q$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -79,7 +80,18 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'forms.wsgi.application'
+# Channels
+ASGI_APPLICATION = "forms.asgi.application"
 
+#### CHANNELS #########
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_rabbitmq.core.RabbitmqChannelLayer",
+        "CONFIG": {
+            "host": "amqp://admin:admin@127.0.0.1:5672/",
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
