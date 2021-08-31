@@ -268,4 +268,140 @@
 {% for i in cr %}
 <div class="small text-muted my-4">Images by <a target="_blank" href="{% url 'blog' %}">{{ i.name }}</a></div>
 {% endfor %}
+
+<div id="change1" style="margin: 100px;padding: 100px;">Hello</div>
+
+<script>
+  
+
+  function getXMLData(){
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", "https://ajax-learning.herokuapp.com/api/profileProfile/", true);
+  xhr.onload = function() {
+    console.log(xhr.response);
+    document.getElementById("change1").innerHTML=xhr.response;
+  }
+  xhr.send();
+  }
+
+
+  function getAjaxData(method){
+            // var url = 'http://localhost:8000/api/v1/studentrecords/'
+            var url = 'https://ajax-learning.herokuapp.com/api/profileProfile/'
+            var method = method
+            var data = { "type": "type" }
+
+            $.ajax({
+                url: url,
+                method: method,
+                data: data,
+                success: function (responseData) {
+                    console.log(responseData)
+                    document.getElementById("change1").innerHTML=responseData['results'][0]['name'];
+                },
+                error: function (errorData) {
+                    alert("An Error Occur while rendering Chart!!")
+                }
+            })
+        }
+
+function postAjaxData(){
+      formData = new FormData();
+      formData.append('name',"vivek1933");
+      formData.append('enrollment',4);
+      formData.append('faculty',"hsui");
+      formData.append('year',"second");
+      formData.append('user',1);
+      $.ajax({
+                url : window.location.protocol+'//'+window.location.host+'/api/v1/studentrecords/',
+                type : 'POST',
+                data : formData,
+                processData: false,
+                contentType: false,
+                success : function(data) {
+                  console.log(data);
+                  alert("data posted successfully");
+
+                }
+      });
+}
+
+function PUTAjaxData(){
+      formData = new FormData();
+      formData.append('name',"vivek1933");
+      formData.append('enrollment',5);
+      formData.append('faculty',"hsuCNdhjkdcbDJKi");
+      formData.append('year',"third");
+      formData.append('user',1);
+      $.ajax({
+                url : window.location.protocol+'//'+window.location.host+'/api/v1/studentrecords/vivek1933/',
+                type : 'PUT',
+                data : formData,
+                processData: false,
+                contentType: false,
+                success : function(data) {
+                  console.log(data);
+
+                }
+      });
+}
+
+
+function xmlPOSTData(){
+      var xhr = new XMLHttpRequest();
+      var formData = new FormData();
+      formData.append('name',"vivek14833");
+      formData.append('enrollment',4);
+      formData.append('faculty',"hsui");
+      formData.append('year',"second");
+      formData.append('user',1);
+
+      xhr.upload.addEventListener("progress",function(event){
+                        console.log("DATA UPLOAD PROGRESS");
+                        console.log(Math.round((event.loaded/event.total)*100*100)/100);
+                    },false);
+                    
+      xhr.onreadystatechange=function(){
+        if(this.readyState == 4 && this.status==201){
+          var data = JSON.parse(xhr.responseText);
+          console.log(data);
+        }
+      }
+      xhr.open("POST", window.location.protocol+'//'+window.location.host+'/api/v1/studentrecords/', true);
+      xhr.send(formData);
+}
+
+function xmlPUTData(){
+      var xhr = new XMLHttpRequest();
+      var formData = new FormData();
+      formData.append('name',"vivek133");
+      formData.append('enrollment',6);
+      formData.append('faculty',"hsuGBGGi");
+      formData.append('year',"third");
+      formData.append('user',1);
+      xhr.upload.addEventListener("progress",function(event){
+                        console.log("DATA UPLOAD PROGRESS");
+                        console.log(Math.round((event.loaded/event.total)*100*100)/100);
+                    },false);
+                    
+      xhr.onreadystatechange=function(){
+        if(this.readyState == 4 && this.status==204){
+          var data = JSON.parse(xhr.responseText);
+          console.log(data);
+        }
+      }
+      xhr.open("PUT", window.location.protocol+'//'+window.location.host+'/api/v1/studentrecords/vivek133/', true);
+      xhr.send(formData);
+}
+
+        getAjaxData('GET');
+        // getXMLData()
+        // postAjaxData();
+        // xmlPOSTData();
+        // xmlPUTData();
+        // PUTAjaxData();
+
+
+
+</script>
 {% endblock %}
