@@ -65,3 +65,9 @@ class TestConsumer(AsyncJsonWebsocketConsumer):
         await self.send(text_data=json.dumps({
             "payload": message
         }))
+
+"""
+Signals ---> 
+pre save ----> run function ---> Channel send_message (New class addition started)
+post save ---> run function ---> Channel send_message (New class addition ended)
+"""

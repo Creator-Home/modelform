@@ -269,7 +269,9 @@
 <div class="small text-muted my-4">Images by <a target="_blank" href="{% url 'blog' %}">{{ i.name }}</a></div>
 {% endfor %}
 
-<div id="change1" style="margin: 100px;padding: 100px;">Hello</div>
+<div id="change1" style="margin: 100px;padding: 100px;">Hello
+<button type="button" onclick="getAjaxData('GET')">CLick me</button>
+</div>
 
 <script>
   
@@ -297,7 +299,7 @@
                 data: data,
                 success: function (responseData) {
                     console.log(responseData)
-                    document.getElementById("change1").innerHTML=responseData['results'][0]['name'];
+                    document.getElementById("change1").innerHTML+=responseData['results'][0]['name'];
                 },
                 error: function (errorData) {
                     alert("An Error Occur while rendering Chart!!")
@@ -394,7 +396,7 @@ function xmlPUTData(){
       xhr.send(formData);
 }
 
-        getAjaxData('GET');
+        // getAjaxData('GET');
         // getXMLData()
         // postAjaxData();
         // xmlPOSTData();

@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
-
+from django.db.models.signals import post_save, pre_save
+from modelform.signals import post_save_college_record, pre_save_college_record
 
 
 # Create your models here.
@@ -8,6 +9,7 @@ from django.conf import settings
 class CollegeRecord(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False, default='None')
     register_date = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to="image", null=True, blank=True)
 
     def __str__(self):
         return str(self.name)
@@ -54,5 +56,7 @@ class StudentRecord(models.Model):
         verbose_name_plural = 'Student Record'
 
 
+post_save.connect(post_save_college_record, sender=ClassRecord, weak=False)
+pre_save.connect(pre_save_college_record, sender=ClassRecord, weak=False)
 
 
