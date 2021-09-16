@@ -33,6 +33,11 @@ class TestConsumer(AsyncJsonWebsocketConsumer):
         handles disconnection from websocket
         """
         # Leave room group
+        await self.channel_layer.group_send(self.room_group_name, {
+            'type': 'send_message',
+            'message': "i am disconnected",
+            "event": "UPDATE"
+        })
         await self.channel_layer.group_discard(
             self.room_group_name,
             self.channel_name
@@ -65,9 +70,3 @@ class TestConsumer(AsyncJsonWebsocketConsumer):
         await self.send(text_data=json.dumps({
             "payload": message
         }))
-
-"""
-Signals ---> 
-pre save ----> run function ---> Channel send_message (New class addition started)
-post save ---> run function ---> Channel send_message (New class addition ended)
-"""
